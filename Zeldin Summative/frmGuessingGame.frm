@@ -456,6 +456,7 @@ Dim rangeSelected As Boolean
 Dim guessLimitSelected As Boolean
 Dim guessLimit As Integer
 Dim timeLeft As Integer
+Dim changeInProgress As Boolean
 Private Sub cmdReturn1_Click()
     Unload frmGuessingGame
 End Sub
@@ -569,14 +570,19 @@ Private Sub Form_Load()
     opt15Seconds.Value = False
     opt25Seconds.Value = False
     guessCount = 0
+    changeInProgress = False
 End Sub
 
 Private Sub hsbGuess_Change()
-    'Determines what user guess is
-    guess = hsbGuess.Value
+    If Not changeInProgress Then
+        changeInProgress = True
+        'Determines what user guess is
+        guess = hsbGuess.Value
     
-    'Changes scroll bar value
-    txtGuess.Text = Str(hsbGuess.Value)
+        'Changes text in the text box
+        txtGuess.Text = Str(guess)
+        changeInProgress = False
+    End If
 End Sub
 
 Private Sub lblguessCount_Change()
@@ -603,12 +609,12 @@ Private Sub tmrTimeLimit_Timer()
 End Sub
 
 Private Sub txtGuess_Change()
-
-   'Determines what user guess is
-   guess = Val(txtGuess.Text)
-   
-   'Updates scrollbar
-   hsbGuess.Value = Val(txtGuess.Text)
-   
+    If Not changeInProgress Then
+        changeInProgress = True
+        'Determines what user guess is
+        guess = Val(txtGuess.Text)
+        'Updates scrollbar
+        hsbGuess.Value = guess
+        changeInProgress = False
+    End If
   End Sub
-
