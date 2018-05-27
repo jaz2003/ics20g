@@ -207,6 +207,7 @@ Begin VB.Form frmGuessingGame
       EndProperty
       Height          =   615
       Left            =   2640
+      MaxLength       =   3
       TabIndex        =   4
       Top             =   4680
       Width           =   1695
@@ -368,6 +369,7 @@ Begin VB.Form frmGuessingGame
       Width           =   1095
    End
    Begin VB.Label lblTooHigh 
+      BackStyle       =   0  'Transparent
       Caption         =   "Too High"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -386,7 +388,8 @@ Begin VB.Form frmGuessingGame
       Width           =   1335
    End
    Begin VB.Label lblTooLow 
-      BackColor       =   &H00FFFFFF&
+      BackColor       =   &H000000FF&
+      BackStyle       =   0  'Transparent
       Caption         =   "Too Low"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -457,6 +460,28 @@ Dim guessLimitSelected As Boolean
 Dim guessLimit As Integer
 Dim timeLeft As Integer
 Dim changeInProgress As Boolean
+Private Sub initControls()
+    hsbGuess.Enabled = False
+    txtGuess.Enabled = False
+    lblTooHigh.Enabled = False
+    lblTooLow.Enabled = False
+    lblTooHigh.ForeColor = RGB(255, 0, 0)
+    lblTooLow.ForeColor = RGB(255, 0, 0)
+    lblguessCount.Enabled = False
+    cmdSubmitGuess.Enabled = False
+    tmrTimeLimit.Enabled = False
+    lbltimeLeft.Enabled = False
+    lbltimeLeft.Enabled = False
+    lblTitletimeLeft.Enabled = False
+    opt5Guesses.Value = False
+    opt8Guesses.Value = False
+    opt12Guesses.Value = False
+    opt7Seconds.Value = False
+    opt15Seconds.Value = False
+    opt25Seconds.Value = False
+    guessCount = 0
+    changeInProgress = False
+End Sub
 Private Sub cmdReturn1_Click()
     Unload frmGuessingGame
 End Sub
@@ -530,18 +555,21 @@ Private Sub cmdStart_Click()
         txtGuess.Enabled = True
         lblResult.Enabled = True
         lblResult.Caption = ""
+        lblguessCount.Caption = Val(0)
     End If
 End Sub
 Private Sub cmdSubmitGuess_Click()
     If guess = num And timeLeft > 0 And guessLimit > guessCount Then
+        initControls
+        cmdStart.Caption = "Restart"
         lblResult.Caption = "Correct! You have won :)"
-        lblTooHigh.ForeColor = RGB(255, 255, 255)
-        lblTooLow.ForeColor = RGB(255, 255, 255)
+        lblTooHigh.ForeColor = RGB(255, 0, 0)
+        lblTooLow.ForeColor = RGB(255, 0, 0)
     ElseIf guess < num And timeLeft > 0 And guessLimit > guessCount Then
-        lblTooHigh.ForeColor = RGB(255, 255, 255)
+        lblTooHigh.ForeColor = RGB(255, 0, 0)
         lblTooLow.ForeColor = RGB(0, 0, 0)
     ElseIf guess > num And timeLeft > 0 And guessLimit > guessCount Then
-       lblTooLow.ForeColor = RGB(255, 255, 255)
+       lblTooLow.ForeColor = RGB(255, 0, 0)
        lblTooHigh.ForeColor = RGB(0, 0, 0)
     End If
     
@@ -551,26 +579,7 @@ Private Sub cmdSubmitGuess_Click()
 End Sub
 
 Private Sub Form_Load()
-    hsbGuess.Enabled = False
-    txtGuess.Enabled = False
-    lblTooHigh.ForeColor = RGB(255, 255, 255)
-    lblTooLow.ForeColor = RGB(255, 255, 255)
-    lblTooHigh.Enabled = False
-    lblTooLow.Enabled = False
-    lblguessCount.Enabled = False
-    cmdSubmitGuess.Enabled = False
-    tmrTimeLimit.Enabled = False
-    lbltimeLeft.Enabled = False
-    lbltimeLeft.Enabled = False
-    lblTitletimeLeft.Enabled = False
-    opt5Guesses.Value = False
-    opt8Guesses.Value = False
-    opt12Guesses.Value = False
-    opt7Seconds.Value = False
-    opt15Seconds.Value = False
-    opt25Seconds.Value = False
-    guessCount = 0
-    changeInProgress = False
+    initControls
 End Sub
 
 Private Sub hsbGuess_Change()
@@ -589,6 +598,8 @@ Private Sub lblguessCount_Change()
     'What happens if user rans out of guesses
     If guessCount = guessLimit Then
         tmrTimeLimit.Enabled = False
+        cmdStart.Caption = "Restart"
+        initControls
         lblResult.Caption = "You lost. You ran out of guesses :(."
     End If
 End Sub
@@ -602,7 +613,9 @@ Private Sub tmrTimeLimit_Timer()
     End If
     
     If guess <> num And timeLeft = 0 Then
+        initControls
         lblResult.Caption = "You ran out of time :(. This means that you lost."
+        cmdStart.Caption = "Restart"
     ElseIf guess = num Then
         tmrTimeLimit.Enabled = False
     End If
