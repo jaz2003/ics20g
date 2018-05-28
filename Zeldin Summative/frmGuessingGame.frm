@@ -207,7 +207,6 @@ Begin VB.Form frmGuessingGame
       EndProperty
       Height          =   615
       Left            =   2640
-      MaxLength       =   3
       TabIndex        =   4
       Top             =   4680
       Width           =   1695
@@ -459,7 +458,6 @@ Dim rangeSelected As Boolean
 Dim guessLimitSelected As Boolean
 Dim guessLimit As Integer
 Dim timeLeft As Integer
-Dim changeInProgress As Boolean
 Private Sub initControls()
     hsbGuess.Enabled = False
     txtGuess.Enabled = False
@@ -480,7 +478,6 @@ Private Sub initControls()
     opt15Seconds.Value = False
     opt25Seconds.Value = False
     guessCount = 0
-    changeInProgress = False
 End Sub
 Private Sub cmdReturn1_Click()
     Unload frmGuessingGame
@@ -534,28 +531,29 @@ Private Sub cmdStart_Click()
     'Creates conditions
     If rangeSelected = True And timeSelected = True And guessLimitSelected = True Then
         num = Int(Rnd * max + min)
+        hsbGuess.min = min
+        hsbGuess.max = max
         hsbGuess.Enabled = True
         txtGuess.Enabled = True
+        txtGuess = ""
         guessCount = 0
-        num = Int(Rnd * Val(txtMax.Text) + Val(txtMin.Text))
+        num = Int(Rnd * (max - min) + min) 'Generates random number
         lblResult.Caption = ""
-        tmrTimeLimit.Enabled = True
         lblTooHigh.Enabled = True
         lblTooLow.Enabled = True
         tmrTimeLimit.Enabled = True
         lbltimeLeft.Enabled = True
+        lbltimeLeft.Caption = Str(timeLeft)
         lblguessCount.Enabled = False
-        cmdSubmitGuess.Enabled = False
-        lbltimeLeft.Enabled = False
         cmdSubmitGuess.Enabled = True
         lblTitletimeLeft.Enabled = True
-        lblguessCount.Enabled = True
         fraTimeLimit.Caption = "Time Limit"
         fraGuessLimit.Caption = "Guess Limit"
         txtGuess.Enabled = True
         lblResult.Enabled = True
         lblResult.Caption = ""
         lblguessCount.Caption = Val(0)
+        guess = min - 1 'So it's not a valid guess
     End If
 End Sub
 Private Sub cmdSubmitGuess_Click()
@@ -583,15 +581,11 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub hsbGuess_Change()
-    If Not changeInProgress Then
-        changeInProgress = True
-        'Determines what user guess is
-        guess = hsbGuess.Value
+    'Determines what user guess is
+    guess = hsbGuess.Value
     
-        'Changes text in the text box
-        txtGuess.Text = Str(guess)
-        changeInProgress = False
-    End If
+    'Changes text in the text box
+    txtGuess.Text = Str(guess)
 End Sub
 
 Private Sub lblguessCount_Change()
@@ -603,6 +597,7 @@ Private Sub lblguessCount_Change()
         lblResult.Caption = "You lost. You ran out of guesses :(."
     End If
 End Sub
+
 
 Private Sub tmrTimeLimit_Timer()
     timeLeft = timeLeft - 1
@@ -621,13 +616,22 @@ Private Sub tmrTimeLimit_Timer()
     End If
 End Sub
 
-Private Sub txtGuess_Change()
-    If Not changeInProgress Then
-        changeInProgress = True
+Private Sub txtGuess_Validate(cancel As Boolean)
+    cancel = True 'Assume something is wrong
+    If IsNumeric(txtGuess.Text) Then
         'Determines what user guess is
         guess = Val(txtGuess.Text)
-        'Updates scrollbar
-        hsbGuess.Value = guess
-        changeInProgress = False
+        If guess < min Then
+            lblResult.Caption = "Value must be >= " & Str(min)
+        ElseIf guess > max Then
+            lblResult.Caption = "Value must be <= " & Str(max)
+        Else
+            cancel = False
+            lblResult.Caption = "" ' Erase whatever was displayed there befor
+            'Updates scrollbar
+            hsbGuess.Value = guess
+        End If
+    Else
+        lblResult.Caption = "Value must be numeric."
     End If
   End Sub
