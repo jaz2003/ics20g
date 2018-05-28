@@ -463,8 +463,8 @@ Private Sub initControls()
     txtGuess.Enabled = False
     lblTooHigh.Enabled = False
     lblTooLow.Enabled = False
-    lblTooHigh.ForeColor = RGB(255, 0, 0)
-    lblTooLow.ForeColor = RGB(255, 0, 0)
+    lblTooHigh.ForeColor = RGB(200, 0, 0)
+    lblTooLow.ForeColor = RGB(200, 0, 0)
     lblguessCount.Enabled = False
     cmdSubmitGuess.Enabled = False
     tmrTimeLimit.Enabled = False
@@ -561,13 +561,13 @@ Private Sub cmdSubmitGuess_Click()
         initControls
         cmdStart.Caption = "Restart"
         lblResult.Caption = "Correct! You have won :)"
-        lblTooHigh.ForeColor = RGB(255, 0, 0)
-        lblTooLow.ForeColor = RGB(255, 0, 0)
+        lblTooHigh.ForeColor = RGB(200, 0, 0)
+        lblTooLow.ForeColor = RGB(200, 0, 0)
     ElseIf guess < num And timeLeft > 0 And guessLimit > guessCount Then
-        lblTooHigh.ForeColor = RGB(255, 0, 0)
+        lblTooHigh.ForeColor = RGB(200, 0, 0)
         lblTooLow.ForeColor = RGB(0, 0, 0)
     ElseIf guess > num And timeLeft > 0 And guessLimit > guessCount Then
-       lblTooLow.ForeColor = RGB(255, 0, 0)
+       lblTooLow.ForeColor = RGB(200, 0, 0)
        lblTooHigh.ForeColor = RGB(0, 0, 0)
     End If
     
@@ -597,8 +597,6 @@ Private Sub lblguessCount_Change()
         lblResult.Caption = "You lost. You ran out of guesses :(."
     End If
 End Sub
-
-
 Private Sub tmrTimeLimit_Timer()
     timeLeft = timeLeft - 1
     lbltimeLeft.Caption = Str(timeLeft)
