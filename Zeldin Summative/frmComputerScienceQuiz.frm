@@ -10,6 +10,23 @@ Begin VB.Form frmComputerScienceQuiz
    ScaleHeight     =   10170
    ScaleWidth      =   12510
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton cmdNewQuestions 
+      Caption         =   "New Questions"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   720
+      TabIndex        =   19
+      Top             =   6000
+      Width           =   2535
+   End
    Begin VB.Frame Frame3 
       Height          =   1455
       Left            =   5040
@@ -274,23 +291,23 @@ Begin VB.Form frmComputerScienceQuiz
    End
    Begin VB.Label lblQuestion2 
       Height          =   1095
-      Left            =   600
+      Left            =   480
       TabIndex        =   17
-      Top             =   3720
+      Top             =   2760
       Width           =   3135
    End
    Begin VB.Label lblQuestion3 
       Height          =   1095
-      Left            =   600
+      Left            =   480
       TabIndex        =   16
-      Top             =   5760
+      Top             =   4560
       Width           =   3135
    End
    Begin VB.Label lblQuestion1 
       Height          =   1095
-      Left            =   600
+      Left            =   480
       TabIndex        =   15
-      Top             =   1800
+      Top             =   1080
       Width           =   3135
    End
    Begin VB.Label lblbllComputerQuizTitle 
@@ -319,13 +336,62 @@ Attribute VB_Exposed = False
 'Zeldin
 Option Explicit
 Dim question(1 To 20) As String
-Dim answer(1 To 20) As Integer
+Dim answer(1 To 20) As Boolean
+Dim randomQuestion(1 To 20) As Integer
+' Index of first of the three current questions in randomQuestions array
+Dim currentQuestionStart As Integer
+
+' Generate array of numbers from 1 to NumItems in random order
+' Inspired by http://www.vb-helper.com/howto_randomize_array.html
+Private Sub randomizeQuestions()
+    Dim i As Integer
+    Dim j As Integer
+    Dim n As Integer
+    Dim tmp As Integer
+    n = UBound(randomQuestion)
+    ' initialize randomQuestion array
+    For i = 1 To n
+        randomQuestion(i) = i
+    Next i
+    
+    ' randomize randomQuestion
+    For i = 1 To n - 1
+        ' Pick a random entry.
+        j = Int((n - i + 1) * Rnd + i)
+        ' Swap the numbers.
+        tmp = randomQuestion(i)
+        randomQuestion(i) = randomQuestion(j)
+        randomQuestion(j) = tmp
+    Next i
+End Sub
+Private Sub generateQuestions()
+    currentQuestionStart = currentQuestionStart + 3
+    If currentQuestionStart > UBound(randomQuestion) - 3 Then
+        randomizeQuestions
+        currentQuestionStart = 1
+    End If
+    
+    lblQuestion1.Caption = question(randomQuestion(currentQuestionStart))
+    lblQuestion2.Caption = question(randomQuestion(currentQuestionStart + 1))
+    lblQuestion3.Caption = question(randomQuestion(currentQuestionStart + 2))
+End Sub
+
+Private Sub cmdNewQuestions_Click()
+    generateQuestions
+End Sub
 
 Private Sub cmdReturn4_Click()
     Unload frmComputerScienceQuiz
 End Sub
 
 Private Sub cmdSubmit_Click()
+    Dim questionAnswered(3) As Boolean
+    
+    
+    questionAnswered(1) = optTrue1 Or optFalse1
+    questionAnswered(2) = optTrue2 Or optFalse2
+    questionAnswered(3) = optTrue3 Or optFalse3
+    
     'Determines if user answer is correct for question 1
     If optTrue1.Value = True Then
         imgWrong1.Visible = True
@@ -344,6 +410,8 @@ Private Sub cmdSubmit_Click()
         imgRight2.Visible = False
     End If
     
+    'Determines that us
+    
      'Determines if user answer is correct for question 3
      If optTrue3.Value = True Then
         imgRight3.Visible = True
@@ -355,15 +423,52 @@ Private Sub cmdSubmit_Click()
 End Sub
 
 Private Sub Form_Load()
+    Randomize
     question(1) = "True or False: A transistor is a moving switch"
     question(2) = "True or False: Moore's Law states that the amount of transistors doubles on a chip every 12 to 18 months"
     question(3) = "True or False: A CPU is like the computers 'brain'"
+    question(4) = "Q4"
+    question(5) = "Q5"
+    question(6) = "Q6"
+    question(7) = "Q7"
+    question(8) = "Q8"
+    question(9) = "Q9"
+    question(10) = "Q10"
+    question(11) = "Q11"
+    question(12) = "Q12"
+    question(13) = "Q13"
+    question(14) = "Q14"
+    question(15) = "Q15"
+    question(16) = "Q16"
+    question(17) = "Q17"
+    question(18) = "Q18"
+    question(19) = "Q19"
+    question(20) = "Q20"
+    
     answer(1) = False
     answer(2) = True
     answer(3) = True
+    answer(4) = False
+    answer(5) = True
+    answer(6) = False
+    answer(7) = False
+    answer(8) = False
+    answer(9) = True
+    answer(10) = True
+    answer(11) = True
+    answer(12) = False
+    answer(13) = True
+    answer(14) = False
+    answer(15) = True
+    answer(16) = True
+    answer(17) = True
+    answer(18) = False
+    answer(19) = False
+    answer(20) = False
     
-    lblQuestion1.Caption = question(1)
-    lblQuestion2.Caption = question(2)
-    lblQuestion3.Caption = question(3)
+    ' Need to set it to value > number of questions so that sub generateQuestions
+    ' will randomize the questions
+    currentQuestionStart = 100
+    generateQuestions
 End Sub
 
