@@ -354,7 +354,7 @@ Private Sub randomizeQuestions()
         randomQuestion(i) = i
     Next i
     
-    ' randomize randomQuestion
+    ' shuffle randomQuestion
     For i = 1 To n - 1
         ' Pick a random entry.
         j = Int((n - i + 1) * Rnd + i)
@@ -365,15 +365,17 @@ Private Sub randomizeQuestions()
     Next i
 End Sub
 Private Sub generateQuestions()
+    Dim n As Integer
+    n = UBound(randomQuestion)
     currentQuestionStart = currentQuestionStart + 3
-    If currentQuestionStart > UBound(randomQuestion) - 3 Then
+    If currentQuestionStart > n Then
         randomizeQuestions
         currentQuestionStart = 1
     End If
     
     lblQuestion1.Caption = question(randomQuestion(currentQuestionStart))
-    lblQuestion2.Caption = question(randomQuestion(currentQuestionStart + 1))
-    lblQuestion3.Caption = question(randomQuestion(currentQuestionStart + 2))
+    lblQuestion2.Caption = question(randomQuestion(1 + currentQuestionStart Mod n))
+    lblQuestion3.Caption = question(randomQuestion(1 + (currentQuestionStart + 1) Mod n))
 End Sub
 
 Private Sub cmdNewQuestions_Click()
