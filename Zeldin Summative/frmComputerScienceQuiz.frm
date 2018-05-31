@@ -2,13 +2,13 @@ VERSION 5.00
 Begin VB.Form frmComputerScienceQuiz 
    BackColor       =   &H00800000&
    Caption         =   "Computer Science Quiz"
-   ClientHeight    =   10170
+   ClientHeight    =   10200
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   12510
+   ClientWidth     =   12315
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10170
-   ScaleWidth      =   12510
+   ScaleHeight     =   10200
+   ScaleWidth      =   12315
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdNewQuestions 
       Caption         =   "New Questions:"
@@ -22,9 +22,9 @@ Begin VB.Form frmComputerScienceQuiz
          Strikethrough   =   0   'False
       EndProperty
       Height          =   855
-      Left            =   600
+      Left            =   2760
       TabIndex        =   19
-      Top             =   600
+      Top             =   720
       Width           =   2175
    End
    Begin VB.Frame Frame3 
@@ -203,9 +203,9 @@ Begin VB.Form frmComputerScienceQuiz
          Strikethrough   =   0   'False
       EndProperty
       Height          =   735
-      Left            =   1200
+      Left            =   8520
       TabIndex        =   2
-      Top             =   7560
+      Top             =   9000
       Width           =   1575
    End
    Begin VB.CommandButton cmdReturn4 
@@ -225,6 +225,38 @@ Begin VB.Form frmComputerScienceQuiz
       Top             =   7440
       Width           =   1455
    End
+   Begin VB.Label lblQuestion5 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1095
+      Left            =   600
+      TabIndex        =   21
+      Top             =   6840
+      Width           =   3135
+   End
+   Begin VB.Label lblQuestion4 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1095
+      Left            =   600
+      TabIndex        =   20
+      Top             =   5520
+      Width           =   3135
+   End
    Begin VB.Image imgWrong3 
       Height          =   1905
       Left            =   7320
@@ -235,9 +267,9 @@ Begin VB.Form frmComputerScienceQuiz
    End
    Begin VB.Image imgWrong2 
       Height          =   1905
-      Left            =   7320
+      Left            =   7200
       Picture         =   "frmComputerScienceQuiz.frx":099C
-      Top             =   3480
+      Top             =   3360
       Visible         =   0   'False
       Width           =   1725
    End
@@ -302,7 +334,7 @@ Begin VB.Form frmComputerScienceQuiz
       Height          =   1095
       Left            =   600
       TabIndex        =   17
-      Top             =   3720
+      Top             =   3120
       Width           =   3135
    End
    Begin VB.Label lblQuestion3 
@@ -318,7 +350,7 @@ Begin VB.Form frmComputerScienceQuiz
       Height          =   1095
       Left            =   600
       TabIndex        =   16
-      Top             =   5760
+      Top             =   4320
       Width           =   3135
    End
    Begin VB.Label lblQuestion1 
@@ -364,9 +396,10 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim question(1 To 20) As String
 Dim answer(1 To 20) As Boolean
-Dim randomQuestion(1 To 20) As Integer
 Dim guess(1 To 20) As Boolean
-' Index of first of the three current questions in randomQuestions array
+Dim nQuestions As Integer
+
+' Index of first of the current questions in randomQuestions array
 Dim currentQuestionStart As Integer
 
 ' Generate array of numbers from 1 to NumItems in random order
@@ -375,35 +408,40 @@ Private Sub randomizeQuestions()
     Dim i As Integer
     Dim j As Integer
     Dim n As Integer
-    Dim tmp As Integer
-    n = UBound(randomQuestion)
-    ' initialize randomQuestion array
-    For i = 1 To n
-        randomQuestion(i) = i
-    Next i
+    Dim tmpQ As String
+    Dim tmpA As Boolean
+    n = UBound(question)
     
-    ' shuffle randomQuestion
+    ' shuffle questions and answers
     For i = 1 To n - 1
         ' Pick a random entry.
         j = Int((n - i + 1) * Rnd + i)
-        ' Swap the numbers.
-        tmp = randomQuestion(i)
-        randomQuestion(i) = randomQuestion(j)
-        randomQuestion(j) = tmp
+        ' Swap the questions.
+        tmpQ = question(i)
+        question(i) = question(j)
+        question(j) = tmpQ
+        ' Swap answers
+        tmpA = answer(i)
+        answer(i) = answer(j)
+        answer(j) = tmpA
     Next i
 End Sub
 Private Sub generateQuestions()
-    Dim n As Integer
-    n = UBound(randomQuestion)
-    currentQuestionStart = currentQuestionStart + 3
-    If currentQuestionStart > n Then
+    Dim nTotal As Integer
+    
+    nTotal = UBound(question)
+    currentQuestionStart = currentQuestionStart + nQuestions
+    If currentQuestionStart > nTotal Then
         randomizeQuestions
         currentQuestionStart = 1
     End If
     
-    lblQuestion1.Caption = question(randomQuestion(currentQuestionStart))
-    lblQuestion2.Caption = question(randomQuestion(1 + currentQuestionStart Mod n))
-    lblQuestion3.Caption = question(randomQuestion(1 + (currentQuestionStart + 1) Mod n))
+    lblQuestion1.Caption = question(currentQuestionStart)
+    lblQuestion2.Caption = question(currentQuestionStart + 1)
+    lblQuestion3.Caption = question(currentQuestionStart + 2)
+    lblQuestion4.Caption = question(currentQuestionStart + 3)
+    lblQuestion5.Caption = question(currentQuestionStart + 4)
+    
 End Sub
 
 Private Sub cmdNewQuestions_Click()
@@ -488,6 +526,8 @@ Private Sub Form_Load()
     answer(19) = False
     answer(20) = False
     
+    nQuestions = 5
+  
     ' Need to set it to value > number of questions so that sub generateQuestions
     ' will randomize the questions
     currentQuestionStart = 100
