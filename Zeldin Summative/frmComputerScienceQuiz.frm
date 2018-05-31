@@ -11,7 +11,7 @@ Begin VB.Form frmComputerScienceQuiz
    ScaleWidth      =   12510
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton cmdNewQuestions 
-      Caption         =   "New Questions"
+      Caption         =   "New Questions:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -22,10 +22,10 @@ Begin VB.Form frmComputerScienceQuiz
          Strikethrough   =   0   'False
       EndProperty
       Height          =   855
-      Left            =   720
+      Left            =   600
       TabIndex        =   19
-      Top             =   6000
-      Width           =   2535
+      Top             =   600
+      Width           =   2175
    End
    Begin VB.Frame Frame3 
       Height          =   1455
@@ -290,24 +290,51 @@ Begin VB.Form frmComputerScienceQuiz
       Width           =   6975
    End
    Begin VB.Label lblQuestion2 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   1095
-      Left            =   480
+      Left            =   600
       TabIndex        =   17
-      Top             =   2760
+      Top             =   3720
       Width           =   3135
    End
    Begin VB.Label lblQuestion3 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   1095
-      Left            =   480
+      Left            =   600
       TabIndex        =   16
-      Top             =   4560
+      Top             =   5760
       Width           =   3135
    End
    Begin VB.Label lblQuestion1 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   1095
-      Left            =   480
+      Left            =   600
       TabIndex        =   15
-      Top             =   1080
+      Top             =   1800
       Width           =   3135
    End
    Begin VB.Label lblbllComputerQuizTitle 
@@ -338,6 +365,7 @@ Option Explicit
 Dim question(1 To 20) As String
 Dim answer(1 To 20) As Boolean
 Dim randomQuestion(1 To 20) As Integer
+Dim guess(1 To 20) As Boolean
 ' Index of first of the three current questions in randomQuestions array
 Dim currentQuestionStart As Integer
 
@@ -389,39 +417,31 @@ End Sub
 Private Sub cmdSubmit_Click()
     Dim questionAnswered(3) As Boolean
     
+    questionAnswered(1) = optTrue1 Or optFalse1
+    questionAnswered(2) = optTrue2 Or optFalse2
+    questionAnswered(3) = optTrue3 Or optFalse3
+    
+    'Determines what user guess is for question 1
+    If optTrue1.Value = True Or optTrue2.Value = True Or optTrue3.Value = True Then
+        guess(1) = True
+    Else
+        guess(2) = False
+    End If
+    
+    If guess(1) = answer(1) Then
+        imgRight1.Visible = True
+    Else
+        imgWrong1.Visible = True
+    End If
     
     questionAnswered(1) = optTrue1 Or optFalse1
     questionAnswered(2) = optTrue2 Or optFalse2
     questionAnswered(3) = optTrue3 Or optFalse3
     
-    'Determines if user answer is correct for question 1
-    If optTrue1.Value = True Then
-        imgWrong1.Visible = True
-        imgRight1.Visible = False
-    ElseIf optFalse1.Value = True Then
-        imgRight1.Visible = True
-        imgWrong1.Visible = False
-    End If
-    
-    'Determines if user answer is correct for question 2
-    If optTrue2.Value = True Then
-        imgRight2.Visible = True
-        imgWrong2.Visible = False
-    ElseIf optFalse2.Value = True Then
-        imgWrong2.Visible = True
-        imgRight2.Visible = False
-    End If
-    
-    'Determines that us
-    
-     'Determines if user answer is correct for question 3
-     If optTrue3.Value = True Then
-        imgRight3.Visible = True
-        imgWrong3.Visible = False
-    ElseIf optFalse2.Value = True Then
-        imgWrong3.Visible = True
-        imgRight3.Visible = False
-    End If
+End Sub
+
+Private Sub Command1_Click()
+
 End Sub
 
 Private Sub Form_Load()
@@ -429,23 +449,23 @@ Private Sub Form_Load()
     question(1) = "True or False: A transistor is a moving switch"
     question(2) = "True or False: Moore's Law states that the amount of transistors doubles on a chip every 12 to 18 months"
     question(3) = "True or False: A CPU is like the computers 'brain'"
-    question(4) = "Q4"
-    question(5) = "Q5"
-    question(6) = "Q6"
-    question(7) = "Q7"
-    question(8) = "Q8"
-    question(9) = "Q9"
-    question(10) = "Q10"
-    question(11) = "Q11"
-    question(12) = "Q12"
-    question(13) = "Q13"
-    question(14) = "Q14"
-    question(15) = "Q15"
-    question(16) = "Q16"
-    question(17) = "Q17"
-    question(18) = "Q18"
-    question(19) = "Q19"
-    question(20) = "Q20"
+    question(4) = "True or False: The Analytical Engine was an actual computer"
+    question(5) = "True or False: RAM stands for Random Access Memory"
+    question(6) = "True or False: Apple was founded by Steve Jobs and Steve Wozniak"
+    question(7) = "True or False: Computers these days use a DOS interface."
+    question(8) = "True or False: GUI stands for Graphicial User Interactions"
+    question(9) = "True or False: The LISA computer was a catastrophic fail"
+    question(10) = "True or False: Steve Jobs was kicked out of Apple by it's board of directors in 1985."
+    question(11) = "True or False: Microsoft was founded by Bill Gates and Paul Allen"
+    question(12) = "True or False: The MacOS has the most users"
+    question(13) = "True or False: An XOR gate lets current flow through it if both inputs are different"
+    question(14) = "True or False: The kernel is the top layer of an OS's structure"
+    question(15) = "True or False: A spelling error in your program is called a syntax error"
+    question(16) = "True or False: Colbal was one of the first computer languages"
+    question(17) = "True or False: Javascript is crucial to the internet"
+    question(18) = "True or False: In C++, controls are already programmed for you"
+    question(19) = "True or False: In VB 6.0, you need Randomize Timer to generate a random number"
+    question(20) = "True or False: A function does not return a value"
     
     answer(1) = False
     answer(2) = True
