@@ -394,12 +394,17 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'Zeldin
 Option Explicit
-Dim question(1 To 20) As String
-Dim answer(1 To 20) As Boolean
-Dim guess(1 To 20) As Boolean
-Dim nQuestions As Integer
+' Number of all predefined questions and answers
+Private Const nQuestionsTotal As Integer = 20
 
-' Index of first of the current questions in randomQuestions array
+' Number of questions in the form presented to the user
+Private Const nChoices As Integer = 5
+
+Dim question(1 To nQuestionsTotal) As String
+Dim answer(1 To nQuestionsTotal) As Boolean
+Dim guess(1 To nChoices) As Boolean
+
+' Index of first of the current questions in question array
 Dim currentQuestionStart As Integer
 
 ' Generate array of numbers from 1 to NumItems in random order
@@ -420,18 +425,16 @@ Private Sub randomizeQuestions()
         tmpQ = question(i)
         question(i) = question(j)
         question(j) = tmpQ
-        ' Swap answers
+        ' Swap answers to match the questions.
         tmpA = answer(i)
         answer(i) = answer(j)
         answer(j) = tmpA
     Next i
 End Sub
 Private Sub generateQuestions()
-    Dim nTotal As Integer
-    
-    nTotal = UBound(question)
-    currentQuestionStart = currentQuestionStart + nQuestions
-    If currentQuestionStart > nTotal Then
+    ' Pick next group of questions to put in the form
+    currentQuestionStart = currentQuestionStart + nChoices
+    If currentQuestionStart > nQuestionsTotal Then
         randomizeQuestions
         currentQuestionStart = 1
     End If
@@ -453,29 +456,55 @@ Private Sub cmdReturn4_Click()
 End Sub
 
 Private Sub cmdSubmit_Click()
-    Dim questionAnswered(3) As Boolean
+    Dim questionAnswered(nChoices) As Boolean
+    Dim i As Integer
     
+    lblComputerQuizResult.Caption = ""
+    
+    ' Check whether all questions have been answered
     questionAnswered(1) = optTrue1 Or optFalse1
     questionAnswered(2) = optTrue2 Or optFalse2
     questionAnswered(3) = optTrue3 Or optFalse3
+    questionAnswered(4) = True
+    questionAnswered(5) = True
     
-    'Determines what user guess is for question 1
-    If optTrue1.Value = True Or optTrue2.Value = True Or optTrue3.Value = True Then
+    For i = 1 To nChoices
+        If Not questionAnswered(i) Then
+            lblComputerQuizResult.Caption = "Please answer question " + Str(i)
+            Exit Sub
+        End If
+    Next i
+    
+    ' Collect guesses
+    If optTrue1 = answer(currentQuestionStart) Then
         guess(1) = True
-    Else
-        guess(2) = False
-    End If
-    
-    If guess(1) = answer(1) Then
         imgRight1.Visible = True
+        imgWrong1.Visible = False
     Else
+        guess(1) = False
+        imgRight1.Visible = False
         imgWrong1.Visible = True
     End If
+      
+    If optTrue2 = answer(currentQuestionStart + 1) Then
+        guess(2) = True
+        imgRight2.Visible = True
+        imgWrong2.Visible = False
+    Else
+        guess(2) = False
+        imgRight2.Visible = False
+        imgWrong2.Visible = True
+    End If
     
-    questionAnswered(1) = optTrue1 Or optFalse1
-    questionAnswered(2) = optTrue2 Or optFalse2
-    questionAnswered(3) = optTrue3 Or optFalse3
-    
+    If optTrue3 = answer(currentQuestionStart + 2) Then
+        guess(3) = True
+        imgRight3.Visible = True
+        imgWrong3.Visible = False
+    Else
+        guess(3) = False
+        imgRight3.Visible = False
+        imgWrong3.Visible = True
+    End If
 End Sub
 
 Private Sub Command1_Click()
@@ -499,7 +528,7 @@ Private Sub Form_Load()
     question(13) = "True or False: An XOR gate lets current flow through it if both inputs are different"
     question(14) = "True or False: The kernel is the top layer of an OS's structure"
     question(15) = "True or False: A spelling error in your program is called a syntax error"
-    question(16) = "True or False: Colbal was one of the first computer languages"
+    question(16) = "True or False: Cobol was one of the first computer languages"
     question(17) = "True or False: Javascript is crucial to the internet"
     question(18) = "True or False: In C++, controls are already programmed for you"
     question(19) = "True or False: In VB 6.0, you need Randomize Timer to generate a random number"
@@ -526,8 +555,6 @@ Private Sub Form_Load()
     answer(19) = False
     answer(20) = False
     
-    nQuestions = 5
-  
     ' Need to set it to value > number of questions so that sub generateQuestions
     ' will randomize the questions
     currentQuestionStart = 100
