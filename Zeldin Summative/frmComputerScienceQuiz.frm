@@ -2,139 +2,16 @@ VERSION 5.00
 Begin VB.Form frmComputerScienceQuiz 
    BackColor       =   &H00800000&
    Caption         =   "Computer Science Quiz"
-   ClientHeight    =   10185
+   ClientHeight    =   14000
    ClientLeft      =   225
-   ClientTop       =   570
-   ClientWidth     =   19140
+   ClientTop       =   400
+   ClientWidth     =   14000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10185
-   ScaleWidth      =   19140
+   ScaleHeight     =   14000
+   ScaleWidth      =   14000
    StartUpPosition =   3  'Windows Default
-   Begin VB.Frame fraQuestion5 
-      Height          =   1095
-      Left            =   4920
-      TabIndex        =   22
-      Top             =   9600
-      Width           =   1935
-      Begin VB.OptionButton optFalse5 
-         Caption         =   "False:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   240
-         TabIndex        =   24
-         Top             =   600
-         Width           =   1215
-      End
-      Begin VB.OptionButton optTrue5 
-         Caption         =   "True:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   240
-         TabIndex        =   23
-         Top             =   240
-         Width           =   1455
-      End
-   End
-   Begin VB.Frame fraQuestion4 
-      Height          =   1095
-      Left            =   4920
-      TabIndex        =   19
-      Top             =   7800
-      Width           =   1935
-      Begin VB.OptionButton optTrue4 
-         Caption         =   "True:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   240
-         TabIndex        =   21
-         Top             =   240
-         Width           =   1455
-      End
-      Begin VB.OptionButton optFalse4 
-         Caption         =   "False:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   240
-         TabIndex        =   20
-         Top             =   720
-         Width           =   1215
-      End
-   End
-   Begin VB.Frame fraQuestion2 
-      Height          =   1095
-      Left            =   5040
-      TabIndex        =   16
-      Top             =   3720
-      Width           =   1935
-      Begin VB.OptionButton optTrue2 
-         Caption         =   "True:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   240
-         TabIndex        =   18
-         Top             =   360
-         Width           =   1455
-      End
-      Begin VB.OptionButton optFalse2 
-         Caption         =   "False:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   240
-         TabIndex        =   17
-         Top             =   720
-         Width           =   1215
-      End
-   End
    Begin VB.CommandButton cmdNewQuestions 
-      Caption         =   "New Questions:"
+      Caption         =   "New Questions"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -150,88 +27,6 @@ Begin VB.Form frmComputerScienceQuiz
       Top             =   10800
       Width           =   2175
    End
-   Begin VB.Frame Frame3 
-      Height          =   1095
-      Left            =   5040
-      TabIndex        =   6
-      Top             =   5760
-      Width           =   1935
-      Begin VB.OptionButton optTrue3 
-         Caption         =   "True:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   240
-         TabIndex        =   8
-         Top             =   240
-         Width           =   1455
-      End
-      Begin VB.OptionButton optFalse3 
-         Caption         =   "False:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   240
-         TabIndex        =   7
-         Top             =   600
-         Width           =   1215
-      End
-   End
-   Begin VB.Frame fraQuestion1 
-      Height          =   1095
-      Left            =   5040
-      TabIndex        =   3
-      Top             =   1800
-      Width           =   1935
-      Begin VB.OptionButton optFalse1 
-         Caption         =   "False:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   495
-         Left            =   240
-         TabIndex        =   5
-         Top             =   720
-         Width           =   1215
-      End
-      Begin VB.OptionButton optTrue1 
-         Caption         =   "True:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   240
-         TabIndex        =   4
-         Top             =   360
-         Width           =   1455
-      End
-   End
    Begin VB.CommandButton cmdSubmit 
       Caption         =   "Submit"
       BeginProperty Font 
@@ -243,11 +38,11 @@ Begin VB.Form frmComputerScienceQuiz
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   735
-      Left            =   8160
+      Height          =   750
+      Left            =   7000
       TabIndex        =   2
-      Top             =   11880
-      Width           =   1575
+      Top             =   12500
+      Width           =   1600
    End
    Begin VB.CommandButton cmdReturn4 
       Caption         =   "&Return"
@@ -266,39 +61,7 @@ Begin VB.Form frmComputerScienceQuiz
       Top             =   11880
       Width           =   1455
    End
-   Begin VB.Image imgRight4 
-      Height          =   1590
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":0000
-      Top             =   7800
-      Visible         =   0   'False
-      Width           =   1815
-   End
-   Begin VB.Image imgRight5 
-      Height          =   1590
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":0795
-      Top             =   9600
-      Visible         =   0   'False
-      Width           =   1815
-   End
-   Begin VB.Image imgWrong5 
-      Height          =   1905
-      Left            =   7440
-      Picture         =   "frmComputerScienceQuiz.frx":0F2A
-      Top             =   9600
-      Visible         =   0   'False
-      Width           =   1725
-   End
-   Begin VB.Image imgWrong4 
-      Height          =   1905
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":18C6
-      Top             =   7800
-      Visible         =   0   'False
-      Width           =   1725
-   End
-   Begin VB.Label lblQuestion5 
+   Begin VB.Label lblQuestion1 
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -308,91 +71,11 @@ Begin VB.Form frmComputerScienceQuiz
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1455
+      Height          =   1800
       Left            =   600
-      TabIndex        =   15
-      Top             =   9480
-      Width           =   3135
-   End
-   Begin VB.Label lblQuestion4 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   13.5
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   1455
-      Left            =   600
-      TabIndex        =   14
-      Top             =   7680
-      Width           =   3135
-   End
-   Begin VB.Image imgWrong3 
-      Height          =   1905
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":2262
-      Top             =   5640
-      Visible         =   0   'False
-      Width           =   1725
-   End
-   Begin VB.Image imgWrong2 
-      Height          =   1905
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":2BFE
-      Top             =   3720
-      Visible         =   0   'False
-      Width           =   1725
-   End
-   Begin VB.Image imgWrong1 
-      Height          =   1905
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":359A
-      Top             =   1560
-      Visible         =   0   'False
-      Width           =   1725
-   End
-   Begin VB.Image imgRight3 
-      Height          =   1590
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":3F36
-      Top             =   5640
-      Visible         =   0   'False
-      Width           =   1815
-   End
-   Begin VB.Image imgRight2 
-      Height          =   1590
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":46CB
-      Top             =   3720
-      Visible         =   0   'False
-      Width           =   1815
-   End
-   Begin VB.Image imgRight1 
-      Height          =   1590
-      Left            =   7320
-      Picture         =   "frmComputerScienceQuiz.frx":4E60
-      Top             =   1560
-      Visible         =   0   'False
-      Width           =   1815
-   End
-   Begin VB.Label lblComputerQuizResult 
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   13.5
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   1335
-      Left            =   360
-      TabIndex        =   12
-      Top             =   11280
-      Width           =   6975
+      TabIndex        =   9
+      Top             =   1200
+      Width           =   3200
    End
    Begin VB.Label lblQuestion2 
       BeginProperty Font 
@@ -404,11 +87,11 @@ Begin VB.Form frmComputerScienceQuiz
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1575
+      Height          =   1800
       Left            =   600
       TabIndex        =   11
-      Top             =   3720
-      Width           =   3135
+      Top             =   3400
+      Width           =   3200
    End
    Begin VB.Label lblQuestion3 
       BeginProperty Font 
@@ -420,13 +103,13 @@ Begin VB.Form frmComputerScienceQuiz
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1455
+      Height          =   1800
       Left            =   600
       TabIndex        =   10
-      Top             =   5880
-      Width           =   3135
+      Top             =   5600
+      Width           =   3200
    End
-   Begin VB.Label lblQuestion1 
+   Begin VB.Label lblQuestion4 
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -436,13 +119,330 @@ Begin VB.Form frmComputerScienceQuiz
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1455
+      Height          =   1800
       Left            =   600
-      TabIndex        =   9
-      Top             =   1800
-      Width           =   3135
+      TabIndex        =   14
+      Top             =   7800
+      Width           =   3200
    End
-   Begin VB.Label lblbllComputerQuizTitle 
+   Begin VB.Label lblQuestion5 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1800
+      Left            =   600
+      TabIndex        =   15
+      Top             =   10000
+      Width           =   3200
+   End
+   Begin VB.Frame fraQuestion1 
+      Height          =   1300
+      Left            =   4600
+      TabIndex        =   3
+      Top             =   1450
+      Width           =   1600
+      Begin VB.OptionButton optTrue1 
+         Caption         =   "True"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   4
+         Top             =   300
+         Width           =   1200
+      End
+      Begin VB.OptionButton optFalse1 
+         Caption         =   "False"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   5
+         Top             =   780
+         Width           =   1200
+      End
+End
+   Begin VB.Frame fraQuestion2 
+      Height          =   1300
+      Left            =   4600
+      TabIndex        =   16
+      Top             =   3650
+      Width           =   1600
+      Begin VB.OptionButton optTrue2 
+         Caption         =   "True"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   18
+         Top             =   300
+         Width           =   1200
+      End
+      Begin VB.OptionButton optFalse2 
+         Caption         =   "False"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   17
+         Top             =   780
+         Width           =   1200
+      End
+   End
+   Begin VB.Frame Frame3 
+      Height          =   1300
+      Left            =   4600
+      TabIndex        =   6
+      Top             =   5850
+      Width           =   1600
+      Begin VB.OptionButton optTrue3 
+         Caption         =   "True"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   8
+         Top             =   300
+         Width           =   1200
+      End
+      Begin VB.OptionButton optFalse3 
+         Caption         =   "False"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   7
+         Top             =   780
+         Width           =   1200
+      End
+   End
+   Begin VB.Frame fraQuestion4 
+      Height          =   1300
+      Left            =   4600
+      TabIndex        =   19
+      Top             =   8050
+      Width           =   1600
+      Begin VB.OptionButton optTrue4 
+         Caption         =   "True"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   21
+         Top             =   300
+         Width           =   1200
+      End
+      Begin VB.OptionButton optFalse4 
+         Caption         =   "False"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   20
+         Top             =   780
+         Width           =   1200
+      End
+   End
+   Begin VB.Frame fraQuestion5 
+      Height          =   1300
+      Left            =   4600
+      TabIndex        =   22
+      Top             =   10250
+      Width           =   1600
+      Begin VB.OptionButton optTrue5 
+         Caption         =   "True"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   23
+         Top             =   300
+         Width           =   1200
+      End
+	  Begin VB.OptionButton optFalse5 
+         Caption         =   "False"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   240
+         TabIndex        =   24
+         Top             =   780
+         Width           =   1200
+      End
+   End
+   Begin VB.Image imgRight1 
+      Height          =   1590
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":4E60
+      Top             =   1305
+      Visible         =   0   'False
+      Width           =   1815
+   End
+   Begin VB.Image imgWrong1 
+      Height          =   1905
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":359A
+      Top             =   1150
+      Visible         =   0   'False
+      Width           =   1800
+   End
+   Begin VB.Image imgRight2 
+      Height          =   1590
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":46CB
+      Top             =   3505
+      Visible         =   0   'False
+      Width           =   1815
+   End
+   Begin VB.Image imgWrong2 
+      Height          =   1905
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":2BFE
+      Top             =   3350
+      Visible         =   0   'False
+      Width           =   1725
+   End
+   Begin VB.Image imgRight3 
+      Height          =   1590
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":3F36
+      Top             =   5705
+      Visible         =   0   'False
+      Width           =   1815
+   End
+      Begin VB.Image imgWrong3 
+      Height          =   1905
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":2262
+      Top             =   5550
+      Visible         =   0   'False
+      Width           =   1725
+   End
+   Begin VB.Image imgRight4 
+      Height          =   1590
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":0000
+      Top             =   7905
+      Visible         =   0   'False
+      Width           =   1815
+   End
+   Begin VB.Image imgWrong4 
+      Height          =   1905
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":18C6
+      Top             =   7750
+      Visible         =   0   'False
+      Width           =   1725
+   End
+   Begin VB.Image imgRight5 
+      Height          =   1590
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":0795
+      Top             =   10250
+      Visible         =   0   'False
+      Width           =   1815
+   End
+   Begin VB.Image imgWrong5 
+      Height          =   1905
+      Left            =   7000
+      Picture         =   "frmComputerScienceQuiz.frx":0F2A
+      Top             =   9950
+      Visible         =   0   'False
+      Width           =   1725
+   End
+   Begin VB.Label lblComputerQuizResult 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   1250
+      Left            =   600
+      TabIndex        =   12
+      Top             =   12250
+      Width           =   5800
+   End
+   Begin VB.Label lblComputerQuizTitle 
       Caption         =   "THE COMPUTER QUIZ:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -691,12 +691,12 @@ Private Sub Form_Load()
     question(11) = "True or False: Microsoft was founded by Bill Gates and Paul Allen."
     question(12) = "True or False: The MacOS has the most users."
     question(13) = "True or False: An OR gate allows current to flow through it if at least 1 input is true."
-    question(14) = "True or False: The kernel is the top layer of an OS's structure"
-    question(15) = "True or False: A spelling error in the message that your prgram is called a syntax error."
+    question(14) = "True or False: The kernel is the top layer of an OS's structure."
+    question(15) = "True or False: A spelling error in the message that your program generates is called a syntax error."
     question(16) = "True or False: Cobol was one of the first computer languages."
     question(17) = "True or False: Javascript is crucial to the internet."
     question(18) = "True or False: In C++, controls are already programmed for you."
-    question(19) = "True or False: In VB 6.0, you need Randomize Timer to generate a random number"
+    question(19) = "True or False: In VB 6.0, you need Randomize Timer to generate a random number."
     question(20) = "True or False: A function does not return a value."
     
     answer(1) = False
@@ -713,7 +713,7 @@ Private Sub Form_Load()
     answer(12) = False
     answer(13) = True
     answer(14) = False
-    answer(15) = True
+    answer(15) = False
     answer(16) = True
     answer(17) = True
     answer(18) = False
