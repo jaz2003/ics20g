@@ -10,8 +10,8 @@ Begin VB.Form frmLogicGates
    ScaleHeight     =   8415
    ScaleWidth      =   8205
    StartUpPosition =   3  'Windows Default
-   Begin VB.Frame fraInput2 
-      Caption         =   "Input 2"
+   Begin VB.Frame fraGate1B 
+      Caption         =   "Gate 1:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -21,17 +21,16 @@ Begin VB.Form frmLogicGates
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1485
-      Index           =   1
-      Left            =   360
+      Height          =   2175
+      Left            =   120
       TabIndex        =   6
-      Top             =   3960
-      Width           =   1605
-      Begin VB.OptionButton optTRUE 
+      Top             =   3480
+      Width           =   1695
+      Begin VB.OptionButton optTRUE2 
          Caption         =   "TRUE"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -39,17 +38,16 @@ Begin VB.Form frmLogicGates
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Index           =   1
          Left            =   240
          TabIndex        =   8
          Top             =   600
          Width           =   1215
       End
-      Begin VB.OptionButton optFALSE 
+      Begin VB.OptionButton optFALSE2 
          Caption         =   "FALSE"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -57,15 +55,14 @@ Begin VB.Form frmLogicGates
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Index           =   1
          Left            =   240
          TabIndex        =   7
-         Top             =   960
+         Top             =   1320
          Width           =   1335
       End
    End
-   Begin VB.Frame fraInput 
-      Caption         =   "Input 1"
+   Begin VB.Frame fraGateA 
+      Caption         =   "Gate 1:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -75,17 +72,16 @@ Begin VB.Form frmLogicGates
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1485
-      Index           =   0
-      Left            =   360
+      Height          =   2175
+      Left            =   120
       TabIndex        =   3
-      Top             =   1320
-      Width           =   1605
-      Begin VB.OptionButton optFALSE 
+      Top             =   1200
+      Width           =   1695
+      Begin VB.OptionButton optFALSE1 
          Caption         =   "FALSE"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -93,17 +89,16 @@ Begin VB.Form frmLogicGates
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Index           =   0
          Left            =   240
          TabIndex        =   5
-         Top             =   960
+         Top             =   1320
          Width           =   1335
       End
-      Begin VB.OptionButton optTRUE 
+      Begin VB.OptionButton optTRUE1 
          Caption         =   "TRUE"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
-            Size            =   9.75
+            Size            =   13.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -111,10 +106,9 @@ Begin VB.Form frmLogicGates
             Strikethrough   =   0   'False
          EndProperty
          Height          =   495
-         Index           =   0
          Left            =   240
          TabIndex        =   4
-         Top             =   480
+         Top             =   600
          Width           =   1215
       End
    End
@@ -143,63 +137,68 @@ Begin VB.Form frmLogicGates
       Top             =   4680
       Width           =   1575
    End
-   Begin VB.Image imgGate1 
+   Begin VB.Image imgNandGate1 
       Height          =   1695
-      Index           =   5
-      Left            =   4080
+      Index           =   1
+      Left            =   0
       Picture         =   "frmLogicGates.frx":0000
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   0
       Visible         =   0   'False
       Width           =   2160
    End
-   Begin VB.Image imgGate1 
+   Begin VB.Image imgNandGate1 
       Height          =   1695
-      Index           =   4
-      Left            =   4080
+      Index           =   0
+      Left            =   4320
       Picture         =   "frmLogicGates.frx":2F22
       Stretch         =   -1  'True
       Top             =   1920
       Visible         =   0   'False
       Width           =   2160
    End
-   Begin VB.Image imgGate1 
+   Begin VB.Image imgXorGate1 
       Height          =   1695
-      Index           =   3
-      Left            =   4200
+      Left            =   4320
       Picture         =   "frmLogicGates.frx":5E44
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   1800
       Visible         =   0   'False
       Width           =   2160
    End
-   Begin VB.Image imgGate1 
+   Begin VB.Image imgXnorGate1 
       Height          =   1695
-      Index           =   2
-      Left            =   4200
+      Left            =   4320
       Picture         =   "frmLogicGates.frx":8D66
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   1800
       Visible         =   0   'False
       Width           =   2160
    End
-   Begin VB.Image imgGate1 
+   Begin VB.Image imgOrGate1 
       Height          =   1695
-      Index           =   1
-      Left            =   4200
+      Left            =   4320
       Picture         =   "frmLogicGates.frx":BC88
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   1800
       Visible         =   0   'False
       Width           =   2160
    End
-   Begin VB.Image imgGate1 
+   Begin VB.Image imgNorGate1 
       Height          =   1695
-      Index           =   0
-      Left            =   4200
+      Left            =   4440
       Picture         =   "frmLogicGates.frx":EBAA
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   1800
+      Visible         =   0   'False
+      Width           =   2160
+   End
+   Begin VB.Image imgAndGate1 
+      Height          =   1695
+      Left            =   4440
+      Picture         =   "frmLogicGates.frx":11ACC
+      Stretch         =   -1  'True
+      Top             =   1800
       Visible         =   0   'False
       Width           =   2160
    End
@@ -220,44 +219,63 @@ Attribute VB_Exposed = False
 'Zeldin
 Option Explicit
 Dim GateName(0 To 5) As String
+Dim GateImage(0 To 5) As Image
 Dim GateOutput(0 To 2) As Boolean
-Private Function calculateLogic() As Boolean
-    Select Case cboLogicGates
-        Case "AND"
-            calculateLogic = optTRUE(0) And optTRUE(1)
-        Case "OR"
-            calculateLogic = optTRUE(0) Or optTRUE(1)
-        Case "XOR"
-            calculateLogic = optTRUE(0) Xor optTRUE(1)
-        Case "NAND"
-            calculateLogic = Not (optTRUE(0) And optTRUE(1))
-        Case "NOR"
-            calculateLogic = Not (optTRUE(0) Or optTRUE(1))
-        Case "XNOR"
-            calculateLogic = (optTRUE(0) Xor optTRUE(1))
-    End Select
-End Function
-Private Sub inputChanged(Index As Integer)
-    Dim i
-    For i = 0 To 1 'UBound(optTRUE)
-        If Not (optTRUE(i) Or optFALSE(i)) Then
-            lblTrueorFalse1.Visible = False
-            Exit Sub
-        End If
-    Next i
-    lblTrueorFalse1 = calculateLogic
-    lblTrueorFalse1.Visible = True
-End Sub
 Private Sub cboLogicGates_Click()
     Dim i As Integer
     For i = 0 To UBound(GateName)
         If (GateName(i) = cboLogicGates) Then
-            imgGate1(i).Visible = True
+            GateVisible(i) = True
         Else
-            imgGate1(i).Visible = False
+            GateVisible(i) = True
         End If
         'GateVisible(i) = (GateName(i) = cboLogicGates)
     Next i
+    
+    If cboLogicGates = "AND GATE" Then
+       imgAndGate1.Visible = True
+       imgNorGate1.Visible = False
+       imgOrGate1.Visible = False
+       imgXorGate1.Visible = False
+       imgXnorGate1.Visible = False
+       imgNandGate1.Visible = False
+    ElseIf cboLogicGates = "OR GATE" Then
+       imgAndGate1.Visible = False
+       imgNorGate1.Visible = False
+       imgOrGate1.Visible = False
+       imgXorGate1.Visible = False
+       imgXnorGate1.Visible = True
+       imgNandGate1.Visible = False
+    ElseIf cboLogicGates = "XOR GATE" Then
+       imgAndGate1.Visible = False
+       imgNorGate1.Visible = False
+       imgOrGate1.Visible = False
+       imgXorGate1.Visible = True
+       imgXnorGate1.Visible = False
+       imgNandGate1.Visible = False
+    ElseIf cboLogicGates = "NAND GATE" Then
+       Call NandGate1
+       imgAndGate1.Visible = False
+       imgNorGate1.Visible = False
+       imgOrGate1.Visible = False
+       imgXorGate1.Visible = False
+       imgXnorGate1.Visible = False
+       imgNandGate1.Visible = True
+    ElseIf cboLogicGates = "XNOR GATE" Then
+       imgAndGate1.Visible = False
+       imgNorGate1.Visible = False
+       imgOrGate1.Visible = False
+       imgXorGate1.Visible = False
+       imgXnorGate1.Visible = True
+       imgNandGate1.Visible = False
+    ElseIf cboLogicGates = "NOR GATE" Then
+       imgAndGate1.Visible = False
+       imgNorGate1.Visible = True
+       imgOrGate1.Visible = False
+       imgXorGate1.Visible = False
+       imgXnorGate1.Visible = False
+       imgNandGate1.Visible = False
+    End If
     
 End Sub
 
@@ -268,29 +286,34 @@ End Sub
 Private Sub Form_Load()
     Dim i As Integer
     GateName(0) = "AND"
+    GateImage(0) = imgAndGate1.Picture
     GateName(1) = "OR"
+    GateImage(1) = imgOrGate1
     GateName(2) = "XOR"
+    GateImage(2) = imgXorGate1
     GateName(3) = "NAND"
+    GateImage(3) = imgNandGate1
     GateName(4) = "NOR"
+    GateImage(4) = imgNorGate1
     GateName(5) = "XNOR"
+    GateImage(5) = imgXnorGate1
     
     For i = 0 To UBound(GateName)
         cboLogicGates.AddItem (GateName(i))
-        imgGate1(i).Visible = False
+        GateImage(i) = False
     Next i
+        
+    cboLogicGates.AddItem "AND GATE"
+    cboLogicGates.AddItem "OR GATE"
+    cboLogicGates.AddItem "XOR GATE"
+    cboLogicGates.AddItem "NAND GATE"
+    cboLogicGates.AddItem "NOR GATE"
+    cboLogicGates.AddItem "XNOR GATE"
 End Sub
 Private Sub NandGate1()
-    If optTRUE1.Value = True And optTRUE2.Value = True Then
+    If optTrue1.Value = True And optTrue2.Value = True Then
         lblTrueorFalse1.Caption = "FALSE"
     Else: lblTrueorFalse1.Caption = "TRUE"
     End If
-End Sub
-
-Private Sub optTRUE_Click(Index As Integer)
-    inputChanged (Index)
-End Sub
-
-Private Sub optFALSE_Click(Index As Integer)
-    inputChanged (Index)
 End Sub
 
