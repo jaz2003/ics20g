@@ -124,10 +124,10 @@ Begin VB.Form frmLogicGates
       Style           =   2  'Dropdown List
       TabIndex        =   1
       Top             =   3720
-      Width           =   3015
+      Width           =   2160
    End
    Begin VB.CommandButton cmdReturn 
-      Caption         =   "&Return"
+      Caption         =   "&Return to Main Form"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -146,20 +146,20 @@ Begin VB.Form frmLogicGates
    Begin VB.Image imgGate1 
       Height          =   1695
       Index           =   5
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":0000
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   2025
       Visible         =   0   'False
       Width           =   2160
    End
    Begin VB.Image imgGate1 
       Height          =   1695
       Index           =   4
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":2F22
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   2025
       Visible         =   0   'False
       Width           =   2160
    End
@@ -169,7 +169,7 @@ Begin VB.Form frmLogicGates
       Left            =   4200
       Picture         =   "frmLogicGates.frx":5E44
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   2025
       Visible         =   0   'False
       Width           =   2160
    End
@@ -179,7 +179,7 @@ Begin VB.Form frmLogicGates
       Left            =   4200
       Picture         =   "frmLogicGates.frx":8D66
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   2025
       Visible         =   0   'False
       Width           =   2160
    End
@@ -189,7 +189,7 @@ Begin VB.Form frmLogicGates
       Left            =   4200
       Picture         =   "frmLogicGates.frx":BC88
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   2025
       Visible         =   0   'False
       Width           =   2160
    End
@@ -199,16 +199,25 @@ Begin VB.Form frmLogicGates
       Left            =   4200
       Picture         =   "frmLogicGates.frx":EBAA
       Stretch         =   -1  'True
-      Top             =   1920
+      Top             =   2025
       Visible         =   0   'False
       Width           =   2160
    End
    Begin VB.Label lblTrueorFalse1 
       BackColor       =   &H00800080&
-      Height          =   375
-      Left            =   6600
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   18
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   6400
       TabIndex        =   2
-      Top             =   2520
+      Top             =   2625
       Width           =   1335
    End
 End
@@ -239,6 +248,12 @@ Private Function calculateLogic() As Boolean
 End Function
 Private Sub inputChanged(Index As Integer)
     Dim i
+    If cboLogicGates = "" Then
+        ' No gate is selected - nothing to do
+        lblTrueorFalse1.Visible = False
+        Exit Sub
+    End If
+        
     For i = 0 To 1 'UBound(optTRUE)
         If Not (optTRUE(i) Or optFALSE(i)) Then
             lblTrueorFalse1.Visible = False
