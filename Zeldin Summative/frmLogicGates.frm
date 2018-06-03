@@ -253,7 +253,8 @@ Private Sub cboLogicGates_Click()
     For i = 0 To UBound(Gate)
         imgGate1(i).Visible = cboLogicGates = Gate(i)
     Next i
-    
+    ' Update lblTrueorFalse1
+    inputChanged (0)
 End Sub
 
 Private Sub cmdReturn_Click()
