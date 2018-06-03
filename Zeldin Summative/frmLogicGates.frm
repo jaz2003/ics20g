@@ -512,9 +512,13 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'Zeldin
 Option Explicit
-Dim Gate(0 To 5) As String
-Dim inputVal(0 To 5) As Boolean
-Dim inputDefined(0 To 5) As Boolean
+Private Const numGateOps As Integer = 6
+Private Const numGates As Integer = 3
+Private Const numInputs = 2 * numGates
+Dim Gate(0 To numGateOps - 1) As String
+Dim inputVal(0 To numInputs - 1) As Boolean
+Dim inputDefined(0 To numInputs - 1) As Boolean
+
 Private Function calculateLogic(gateOp As String, input1 As Boolean, input2 As Boolean) As Boolean
         'Calculates gate output for any gate (true or false)
     Select Case gateOp
@@ -534,19 +538,37 @@ Private Function calculateLogic(gateOp As String, input1 As Boolean, input2 As B
 End Function
 
 Private Sub updateGate(gateIdx As Integer)
-    'Makes sure that gated output is visible only if gate input has been defined and the gate type is selected
-    If Not inputDefined(gateIdx) Or cboLogicGates(gateIdx) = "" Then
+    Dim nextInputIdx As Integer 'where output of this gate is connected to
+    Dim gateOutput As Boolean
+    
+    'Makes sure that gate output is visible only if both gate inputs have been defined
+    'and the gate type is selected
+    If Not (inputDefined(2 * gateIdx) And inputDefined(2 * gateIdx + 1) And cboLogicGates(gateIdx) <> "") Then
         lblTrueorFalse(gateIdx).Visible = False
         Exit Sub
     End If
-    
-    lblTrueorFalse(gateIdx) = calculateLogic(cboLogicGates(gateIdx), inputVal(2 * gateIdx), inputVal(2 * gateIdx + 1))
+    gateOutput = calculateLogic(cboLogicGates(gateIdx), inputVal(2 * gateIdx), inputVal(2 * gateIdx + 1))
+    lblTrueorFalse(gateIdx) = gateOutput
     lblTrueorFalse(gateIdx).Visible = True
+    
+    Select Case gateIdx
+        Case 0
+            nextInputIdx = 4
+        Case 1
+            nextInputIdx = 5
+        Case Else
+            Exit Sub
+    End Select
+    
+    inputDefined(nextInputIdx) = True
+    inputVal(nextInputIdx) = gateOutput
+    updateGate (2)
+ 
 End Sub
 Private Sub inputChanged(idx As Integer)
     Dim gateIdx As Integer
     gateIdx = Int(idx / 2) ' gate(0) has input(0) and input(1), gate(1) has input(2) and input(3)
-    inputDefined(gateIdx) = (optTRUE(2 * gateIdx) Or optFALSE(2 * gateIdx)) And (optTRUE(2 * gateIdx + 1) Or optFALSE(2 * gateIdx + 1))
+    inputDefined(idx) = optTRUE(idx) Or optFALSE(idx)
     inputVal(idx) = optTRUE(idx)
     updateGate (gateIdx)
 End Sub
@@ -574,7 +596,7 @@ Private Sub Form_Load()
     Gate(4) = "NOR"
     Gate(5) = "XNOR"
     
-    For j = 0 To 2 'UBound(cboLogicGates)
+    For j = 0 To numGates - 1 'UBound(cboLogicGates)
         For i = 0 To UBound(Gate)
             cboLogicGates(j).AddItem (Gate(i))
         Next i
