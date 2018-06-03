@@ -126,7 +126,7 @@ Begin VB.Form frmLogicGates
       Top             =   3720
       Width           =   3015
    End
-   Begin VB.CommandButton cmdReturn3 
+   Begin VB.CommandButton cmdReturn 
       Caption         =   "&Return"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -219,7 +219,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'Zeldin
 Option Explicit
-Dim GateName(0 To 5) As String
+Dim Gate(0 To 5) As String
 Dim GateOutput(0 To 2) As Boolean
 Private Function calculateLogic() As Boolean
     Select Case cboLogicGates
@@ -234,7 +234,7 @@ Private Function calculateLogic() As Boolean
         Case "NOR"
             calculateLogic = Not (optTRUE(0) Or optTRUE(1))
         Case "XNOR"
-            calculateLogic = (optTRUE(0) Xor optTRUE(1))
+            calculateLogic = Not (optTRUE(0) Xor optTRUE(1))
     End Select
 End Function
 Private Sub inputChanged(Index As Integer)
@@ -250,40 +250,29 @@ Private Sub inputChanged(Index As Integer)
 End Sub
 Private Sub cboLogicGates_Click()
     Dim i As Integer
-    For i = 0 To UBound(GateName)
-        If (GateName(i) = cboLogicGates) Then
-            imgGate1(i).Visible = True
-        Else
-            imgGate1(i).Visible = False
-        End If
-        'GateVisible(i) = (GateName(i) = cboLogicGates)
+    For i = 0 To UBound(Gate)
+        imgGate1(i).Visible = cboLogicGates = Gate(i)
     Next i
     
 End Sub
 
-Private Sub cmdReturn3_Click()
+Private Sub cmdReturn_Click()
     Unload frmLogicGates
 End Sub
 
 Private Sub Form_Load()
     Dim i As Integer
-    GateName(0) = "AND"
-    GateName(1) = "OR"
-    GateName(2) = "XOR"
-    GateName(3) = "NAND"
-    GateName(4) = "NOR"
-    GateName(5) = "XNOR"
+    Gate(0) = "AND"
+    Gate(1) = "OR"
+    Gate(2) = "XOR"
+    Gate(3) = "NAND"
+    Gate(4) = "NOR"
+    Gate(5) = "XNOR"
     
-    For i = 0 To UBound(GateName)
-        cboLogicGates.AddItem (GateName(i))
+    For i = 0 To UBound(Gate)
+        cboLogicGates.AddItem (Gate(i))
         imgGate1(i).Visible = False
     Next i
-End Sub
-Private Sub NandGate1()
-    If optTRUE1.Value = True And optTRUE2.Value = True Then
-        lblTrueorFalse1.Caption = "FALSE"
-    Else: lblTrueorFalse1.Caption = "TRUE"
-    End If
 End Sub
 
 Private Sub optTRUE_Click(Index As Integer)
