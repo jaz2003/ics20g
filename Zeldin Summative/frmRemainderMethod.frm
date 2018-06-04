@@ -62,7 +62,7 @@ Begin VB.Form frmRemainderMethod
       Width           =   2295
    End
    Begin VB.TextBox txtDecimalNumber 
-      BackColor       =   &H00808080&
+      BackColor       =   &H00C0C0C0&
       BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -73,7 +73,7 @@ Begin VB.Form frmRemainderMethod
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00E0E0E0&
+      ForeColor       =   &H00000000&
       Height          =   375
       Left            =   1920
       TabIndex        =   4
@@ -90,7 +90,7 @@ Begin VB.Form frmRemainderMethod
       Width           =   375
    End
    Begin VB.TextBox txtBase 
-      BackColor       =   &H00808080&
+      BackColor       =   &H00C0C0C0&
       BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -120,9 +120,9 @@ Begin VB.Form frmRemainderMethod
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   0
+      Left            =   960
       TabIndex        =   0
-      Top             =   5520
+      Top             =   6000
       Width           =   1575
    End
    Begin VB.Label lblRemainderMethodTitle 
@@ -146,6 +146,15 @@ Begin VB.Form frmRemainderMethod
    End
    Begin VB.Label lblSteps 
       BackColor       =   &H00808080&
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   3975
       Left            =   4080
       TabIndex        =   8
@@ -164,11 +173,12 @@ Begin VB.Form frmRemainderMethod
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   615
+      Height          =   1215
       Left            =   600
       TabIndex        =   7
-      Top             =   4560
+      Top             =   4680
       Width           =   3015
+      WordWrap        =   -1  'True
    End
    Begin VB.Label lblDecimalNumber 
       BackColor       =   &H00404040&
@@ -254,8 +264,8 @@ Private Function setBase(str As String) As Boolean
     End If
 End Function
 Private Sub setCmdButtons(enabledOrNot As Boolean)
-    cmdShowAnswer.enabled = enabledOrNot
-    cmdStepThrough.enabled = enabledOrNot
+    cmdShowAnswer.Enabled = enabledOrNot
+    cmdStepThrough.Enabled = enabledOrNot
 End Sub
 
 Private Sub prepCmd()
@@ -331,7 +341,7 @@ End Sub
 
 Private Sub cmdShowAnswer_Click()
     'Allows only one click
-    cmdShowAnswer.enabled = False
+    cmdShowAnswer.Enabled = False
     numberConvertor
 End Sub
 
@@ -343,7 +353,7 @@ Private Sub cmdStepThrough_Click()
     lblSteps.Caption = lblSteps.Caption & str(prevStep) & "/" & str(base) & "=" & str(stepValue) & " R" & str(digit) & vbCrLf
     If stepValue = 0 Then
         'We are done
-        cmdStepThrough.enabled = False
+        cmdStepThrough.Enabled = False
     End If
 End Sub
 
