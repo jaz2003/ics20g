@@ -625,7 +625,6 @@ Private Sub Form_Load()
         inputDefined(i) = False
     Next i
 End Sub
-0
 Private Sub optTRUE_Click(Index As Integer)
     inputChanged (Index)
 End Sub

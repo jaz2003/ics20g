@@ -219,13 +219,59 @@ Attribute VB_Exposed = False
 'Zeldin
 'Option Explicit
 Dim originalNumber As Integer 'the number that the user wrote initally
+Dim numberValid As Boolean
 Dim base As Integer
+Dim baseValid As Boolean
 Dim convertedNumber As String
 Dim stepValue 'the value of the current step
+Private Function setDecimalNum(str As String) As Boolean
+    Dim n As Integer
+    n = Val(str)
+    If IsNumeric(str) And n >= 0 And n < 256 Then
+        lblResult.Caption = ""
+        originalNumber = n
+        stepValue = n
+        numberValid = True
+        setDecimalNum = True
+    Else
+        lblResult.Caption = "Input decimal number between 0 and 255."
+        numberValid = False
+        setDecimalNum = False
+    End If
+End Function
+Private Function setBase(str As String) As Boolean
+    Dim n As Integer
+    n = Val(str)
+    If IsNumeric(str) And n >= 2 And n <= 9 Or n = 16 Then
+        base = n
+        baseValid = True
+        lblResult.Caption = ""
+        setBase = True
+    Else
+        lblResult.Caption = "Enter base as a decimal number between 2 and 9 or 16"
+        baseValid = False
+        setBase = False
+    End If
+End Function
+Private Sub setCmdButtons(enabledOrNot As Boolean)
+    cmdShowAnswer.enabled = enabledOrNot
+    cmdStepThrough.enabled = enabledOrNot
+End Sub
+
+Private Sub prepCmd()
+    lblSteps.Caption = ""
+    lblResult.Caption = ""
+    If baseValid And numberValid Then
+        stepValue = originalNumber
+        setCmdButtons (True)
+    Else
+        setCmdButtons (False)
+    End If
+End Sub
 Private Function digit2str(d As Integer)
     Select Case d
         Case 0 To 9
-            digit2str = Str(d)
+            digit2str = str(d)
         Case 10
             digit2str = "A"
         Case 11
@@ -240,66 +286,92 @@ Private Function digit2str(d As Integer)
             digit2str = "F"
     End Select
 End Function
-
-
-Private Sub cmdClear_Click()
-    'Enables controls
-    cmdShowAnswer.Enabled = True
-    cmdStepThrough.Enabled = True
-    txtBase.Text = ""
-    txtDecimalNumber.Text = ""
-    lblSteps.Caption = ""
-    lblResult.Caption = ""
-    vsbBase.Value = 0
-    originalNumber = 0
-    stepValue = originalNumber
-End Sub
-Private Sub cmdReturn_Click()
-    Unload frmRemainderMethod
-End Sub
+Private Function stepThroughConvertor()
+    Dim digit As Integer
+    digit = stepValue Mod base
+    stepValue = Int(stepValue / base)
+    stepThroughConvertor = digit2str(digit)
+End Function
 Private Sub numberConvertor()
     'Converts numbers
     Dim digit As Integer
+    Dim oldStepValue As Integer 'for coordination with stepThrough
     If originalNumber = 0 Then
         lblResult.Caption = "0"
         Exit Sub
     End If
     
-    stepValue = originalNumber
     lblResult.Caption = ""
+    oldStepValue = stepValue
+    stepValue = originalNumber
     While stepValue > 0
-        digit = stepValue Mod base
-        stepValue = Int(stepValue / base)
-        lblResult.Caption = digit2str(digit) & lblResult.Caption
+        lblResult.Caption = stepThroughConvertor() & lblResult.Caption
     Wend
+    'reset stepValue back so that stepThrough works
+    stepValue = oldStepValue
+End Sub
+Private Sub initForm()
+    txtBase.Text = ""
+    txtDecimalNumber.Text = ""
+    lblSteps.Caption = ""
+    lblResult.Caption = ""
+    vsbBase.Value = 0
+    baseValid = False
+    numberValid = False
+    originalNumber = 0
+    base = 0
+    prepCmd
+End Sub
+Private Sub cmdClear_Click()
+    initForm
+End Sub
+Private Sub cmdReturn_Click()
+    Unload frmRemainderMethod
 End Sub
 
 Private Sub cmdShowAnswer_Click()
     'Allows only one click
-    cmdShowAnswer.Enabled = False
-    
-    'Determines that input is valid
-        If base < 2 Or (base > 9 And base <> 16) Then
-            lblResult.Caption = "You have selected an invalid base"
-        Else: Call numberConvertor
-        End If
-        End Sub
+    cmdShowAnswer.enabled = False
+    numberConvertor
+End Sub
+
+Private Sub cmdStepThrough_Click()
+    Dim digit As String
+    Dim prevStep As Integer
+    prevStep = stepValue
+    digit = stepThroughConvertor() 'stepValue is changed now
+    lblSteps.Caption = lblSteps.Caption & str(prevStep) & "/" & str(base) & "=" & str(stepValue) & " R" & str(digit) & vbCrLf
+    If stepValue = 0 Then
+        'We are done
+        cmdStepThrough.enabled = False
+    End If
+End Sub
+
+Private Sub Form_Load()
+    initForm
+End Sub
 
 Private Sub txtBase_Change()
-    base = Val(txtBase.Text)
+    setCmdButtons (False)
+    If setBase(txtBase.Text) Then
+        prepCmd
+    End If
 End Sub
 
 Private Sub txtDecimalNumber_Validate(keepFocus As Boolean)
-    originalNumber = Val(txtDecimalNumber)
-    If IsNumeric(txtDecimalNumber) And originalNumber >= 0 And originalNumber < 256 Then
+    setCmdButtons (False)
+    If setDecimalNum(txtDecimalNumber) Then
         keepFocus = False
+        prepCmd
     Else
         keepFocus = True
-        lblResult.Caption = "Input decimal number between 0 and 255."
     End If
 End Sub
 
 Private Sub vsbBase_Change()
-    txtBase.Text = Str(vsbBase.Value)
-    base = vsbBase.Value
+    setCmdButtons (False)
+    txtBase.Text = str(vsbBase.Value)
+    If setBase(txtBase.Text) Then
+        prepCmd
+    End If
 End Sub
