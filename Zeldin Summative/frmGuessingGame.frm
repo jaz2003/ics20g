@@ -497,7 +497,6 @@ Private Sub cmdStart_Click()
     'Checks to make sure that user selected guess limit
     If opt5Guesses.Value = False And opt8Guesses.Value = False And opt12Guesses.Value = False Then
         guessLimitSelected = False
-        fraGuessLimit.Caption = "Error!"
         lblResult.Caption = "Error! You have not selected a guess limit!"
     ElseIf opt5Guesses.Value = True Then
         guessLimitSelected = True
@@ -512,7 +511,6 @@ Private Sub cmdStart_Click()
     
     'Makes sure that user selects time setting
     If opt7Seconds.Value = False And opt15Seconds.Value = False And opt25Seconds.Value = False Then
-        fraTimeLimit.Caption = "Error!."
         lblResult.Enabled = True
         lblResult.Caption = "You have not selected a time limit."
         timeSelected = False
@@ -625,7 +623,7 @@ Private Sub txtGuess_Validate(cancel As Boolean)
             lblResult.Caption = "Value must be <= " & Str(max)
         Else
             cancel = False
-            lblResult.Caption = "" ' Erase whatever was displayed there befor
+            lblResult.Caption = "" ' Erase whatever was displayed there before
             'Updates scrollbar
             hsbGuess.Value = guess
         End If

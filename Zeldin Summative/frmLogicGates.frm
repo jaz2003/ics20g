@@ -254,7 +254,7 @@ Begin VB.Form frmLogicGates
       Width           =   2160
    End
    Begin VB.CommandButton cmdReturn 
-      Caption         =   "&Return to Main Form"
+      Caption         =   "&Return"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -265,10 +265,28 @@ Begin VB.Form frmLogicGates
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   2160
+      Left            =   7800
       TabIndex        =   0
-      Top             =   600
+      Top             =   7560
       Width           =   1575
+   End
+   Begin VB.Label lblLogicGatesTitle 
+      BackColor       =   &H00800080&
+      Caption         =   "Welcome to the Logic Gates Simulator! Please chose a gate and an input!"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   18
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   4200
+      TabIndex        =   19
+      Top             =   240
+      Width           =   7095
    End
    Begin VB.Label lblTrueorFalse 
       BackColor       =   &H00800080&
@@ -607,7 +625,7 @@ Private Sub Form_Load()
         inputDefined(i) = False
     Next i
 End Sub
-
+0
 Private Sub optTRUE_Click(Index As Integer)
     inputChanged (Index)
 End Sub

@@ -1,2 +1,2 @@
 # ics20g
-All projects for ICS20G course
+All projects for ICS2OG course
