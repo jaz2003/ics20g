@@ -28,7 +28,7 @@ Begin VB.Form frmMain
       Width           =   1935
    End
    Begin VB.CommandButton cmdComputerScienceQuiz 
-      Caption         =   "Computer Science Quiz"
+      Caption         =   "Computer Science Quiz (T3)"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -42,7 +42,7 @@ Begin VB.Form frmMain
       Left            =   2760
       TabIndex        =   4
       Top             =   3360
-      Width           =   2055
+      Width           =   2415
    End
    Begin VB.CommandButton cmdRemainderMethod 
       Caption         =   "Remainder Method"
@@ -62,7 +62,7 @@ Begin VB.Form frmMain
       Width           =   2055
    End
    Begin VB.CommandButton cmdBooleanGates 
-      Caption         =   "Boolean Logic Gates"
+      Caption         =   "Boolean Logic Gates (T3)"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -79,7 +79,7 @@ Begin VB.Form frmMain
       Width           =   2055
    End
    Begin VB.CommandButton cmdGuessingGame 
-      Caption         =   "Guessing Game"
+      Caption         =   "Guessing Game (T3)"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5

@@ -1,5 +1,5 @@
-frmMain = 144, 123, 1481, 773, C, 26, 26, 1363, 676, C
-frmGuessingGame = 8, 4, 1026, 846, C, 73, -26, 1407, 515, C
-frmRemainderMethod = 42, 87, 1096, 737, , -16, -14, 1321, 630, C
-frmLogicGates = 78, 78, 1017, 603, , 52, 52, 991, 781, C
-frmComputerScienceQuiz = 52, 52, 991, 577, C, 52, 52, 1301, 922, C
+frmMain = -301, 91, 999, 741, C, 26, 26, 1326, 676, C
+frmGuessingGame = 8, 4, 1026, 846, C, 73, -26, 1373, 515, C
+frmRemainderMethod = -50, 69, 1004, 719, C, -16, -14, 1284, 630, C
+frmLogicGates = 78, 78, 1017, 603, C, -92, 0, 847, 729, C
+frmComputerScienceQuiz = 71, 30, 1010, 602, C, 33, -18, 1282, 890, C

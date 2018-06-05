@@ -238,10 +238,17 @@ Begin VB.Form frmLogicGates
          EndProperty
          Height          =   495
          Index           =   0
-         Left            =   240
+         Left            =   360
          TabIndex        =   4
          Top             =   480
          Width           =   1215
+      End
+      Begin VB.Line Line1 
+         BorderColor     =   &H000000FF&
+         X1              =   1560
+         X2              =   1560
+         Y1              =   1440
+         Y2              =   960
       End
    End
    Begin VB.ComboBox cboLogicGates 
@@ -269,6 +276,78 @@ Begin VB.Form frmLogicGates
       TabIndex        =   0
       Top             =   7560
       Width           =   1575
+   End
+   Begin VB.Line Line13 
+      X1              =   9000
+      X2              =   10440
+      Y1              =   4680
+      Y2              =   4680
+   End
+   Begin VB.Line Line12 
+      X1              =   9000
+      X2              =   9000
+      Y1              =   2880
+      Y2              =   6480
+   End
+   Begin VB.Line Line11 
+      X1              =   7920
+      X2              =   9000
+      Y1              =   2880
+      Y2              =   2880
+   End
+   Begin VB.Line Line10 
+      X1              =   7680
+      X2              =   9000
+      Y1              =   6480
+      Y2              =   6480
+   End
+   Begin VB.Line Line9 
+      X1              =   3240
+      X2              =   4080
+      Y1              =   7080
+      Y2              =   7080
+   End
+   Begin VB.Line Line8 
+      X1              =   3240
+      X2              =   3240
+      Y1              =   6240
+      Y2              =   7800
+   End
+   Begin VB.Line Line7 
+      X1              =   1920
+      X2              =   3240
+      Y1              =   7800
+      Y2              =   7800
+   End
+   Begin VB.Line Line6 
+      X1              =   2040
+      X2              =   3240
+      Y1              =   6240
+      Y2              =   6240
+   End
+   Begin VB.Line Line5 
+      X1              =   3240
+      X2              =   4200
+      Y1              =   2880
+      Y2              =   2880
+   End
+   Begin VB.Line Line4 
+      X1              =   3240
+      X2              =   3240
+      Y1              =   2160
+      Y2              =   3840
+   End
+   Begin VB.Line Line3 
+      X1              =   1920
+      X2              =   3240
+      Y1              =   3840
+      Y2              =   3840
+   End
+   Begin VB.Line Line2 
+      X1              =   1800
+      X2              =   3240
+      Y1              =   2160
+      Y2              =   2160
    End
    Begin VB.Label lblLogicGatesTitle 
       BackColor       =   &H00800080&
@@ -517,7 +596,7 @@ Begin VB.Form frmLogicGates
       EndProperty
       Height          =   495
       Index           =   0
-      Left            =   6400
+      Left            =   6480
       TabIndex        =   2
       Top             =   2625
       Width           =   1335

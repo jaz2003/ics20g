@@ -352,7 +352,7 @@ Private Sub cmdStepThrough_Click()
     digit = stepThroughConvertor() 'stepValue is changed now
     lblSteps.Caption = lblSteps.Caption & str(prevStep) & "/" & str(base) & "=" & str(stepValue) & " R" & str(digit) & vbCrLf
     If stepValue = 0 Then
-        'We are done
+        'We are done, no more steps should be shown
         cmdStepThrough.Enabled = False
     End If
 End Sub
