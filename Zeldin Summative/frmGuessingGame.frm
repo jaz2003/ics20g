@@ -247,10 +247,10 @@ Begin VB.Form frmGuessingGame
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   375
+      Height          =   735
       Left            =   4800
       TabIndex        =   0
-      Top             =   6360
+      Top             =   6000
       Width           =   1695
    End
    Begin VB.Label lblguessCountTitle 
@@ -541,7 +541,7 @@ Private Sub cmdStart_Click()
         lblTooLow.Enabled = True
         tmrTimeLimit.Enabled = True
         lbltimeLeft.Enabled = True
-        lbltimeLeft.Caption = Str(timeLeft)
+        lbltimeLeft.Caption = str(timeLeft)
         lblguessCount.Enabled = False
         cmdSubmitGuess.Enabled = True
         lblTitletimeLeft.Enabled = True
@@ -583,7 +583,7 @@ Private Sub hsbGuess_Change()
     guess = hsbGuess.Value
     
     'Changes text in the text box
-    txtGuess.Text = Str(guess)
+    txtGuess.Text = str(guess)
 End Sub
 
 Private Sub lblguessCount_Change()
@@ -597,7 +597,7 @@ Private Sub lblguessCount_Change()
 End Sub
 Private Sub tmrTimeLimit_Timer()
     timeLeft = timeLeft - 1
-    lbltimeLeft.Caption = Str(timeLeft)
+    lbltimeLeft.Caption = str(timeLeft)
     
     If timeLeft = 0 Then
         tmrTimeLimit.Enabled = False
@@ -618,9 +618,9 @@ Private Sub txtGuess_Validate(cancel As Boolean)
         'Determines what user guess is
         guess = Val(txtGuess.Text)
         If guess < min Then
-            lblResult.Caption = "Value must be >= " & Str(min)
+            lblResult.Caption = "Value must be >= " & str(min)
         ElseIf guess > max Then
-            lblResult.Caption = "Value must be <= " & Str(max)
+            lblResult.Caption = "Value must be <= " & str(max)
         Else
             cancel = False
             lblResult.Caption = "" ' Erase whatever was displayed there before

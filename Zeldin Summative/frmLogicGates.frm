@@ -2,12 +2,12 @@ VERSION 5.00
 Begin VB.Form frmLogicGates 
    BackColor       =   &H00800080&
    Caption         =   "Logic Gates"
-   ClientHeight    =   8415
+   ClientHeight    =   9075
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   15060
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8415
+   ScaleHeight     =   9075
    ScaleWidth      =   15060
    StartUpPosition =   3  'Windows Default
    Begin VB.ComboBox cboLogicGates 
@@ -47,7 +47,7 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   3
          Left            =   240
          TabIndex        =   15
@@ -65,12 +65,12 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   3
          Left            =   240
          TabIndex        =   14
          Top             =   840
-         Width           =   1335
+         Width           =   1215
       End
    End
    Begin VB.Frame fraInput2 
@@ -101,12 +101,12 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   2
          Left            =   240
          TabIndex        =   12
          Top             =   960
-         Width           =   1335
+         Width           =   1215
       End
       Begin VB.OptionButton optTRUE 
          Caption         =   "TRUE"
@@ -119,7 +119,7 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   2
          Left            =   240
          TabIndex        =   11
@@ -130,7 +130,7 @@ Begin VB.Form frmLogicGates
    Begin VB.ComboBox cboLogicGates 
       Height          =   315
       Index           =   1
-      Left            =   4080
+      Left            =   4200
       Style           =   2  'Dropdown List
       TabIndex        =   9
       Top             =   7440
@@ -164,7 +164,7 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   1
          Left            =   240
          TabIndex        =   8
@@ -182,12 +182,12 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   1
          Left            =   240
          TabIndex        =   7
          Top             =   960
-         Width           =   1335
+         Width           =   1215
       End
    End
    Begin VB.Frame fraInput 
@@ -218,12 +218,12 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   0
          Left            =   240
          TabIndex        =   5
          Top             =   960
-         Width           =   1335
+         Width           =   1215
       End
       Begin VB.OptionButton optTRUE 
          Caption         =   "TRUE"
@@ -236,19 +236,12 @@ Begin VB.Form frmLogicGates
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   480
          Index           =   0
-         Left            =   360
+         Left            =   240
          TabIndex        =   4
          Top             =   480
          Width           =   1215
-      End
-      Begin VB.Line Line1 
-         BorderColor     =   &H000000FF&
-         X1              =   1560
-         X2              =   1560
-         Y1              =   1440
-         Y2              =   960
       End
    End
    Begin VB.ComboBox cboLogicGates 
@@ -277,6 +270,24 @@ Begin VB.Form frmLogicGates
       Top             =   7560
       Width           =   1575
    End
+   Begin VB.Label lblError 
+      BackColor       =   &H00800080&
+      Caption         =   "Not all inputs selected!"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   855
+      Left            =   4200
+      TabIndex        =   20
+      Top             =   8160
+      Width           =   2895
+   End
    Begin VB.Line Line13 
       X1              =   9000
       X2              =   10440
@@ -303,9 +314,9 @@ Begin VB.Form frmLogicGates
    End
    Begin VB.Line Line9 
       X1              =   3240
-      X2              =   4080
-      Y1              =   7080
-      Y2              =   7080
+      X2              =   4200
+      Y1              =   6720
+      Y2              =   6720
    End
    Begin VB.Line Line8 
       X1              =   3240
@@ -351,7 +362,7 @@ Begin VB.Form frmLogicGates
    End
    Begin VB.Label lblLogicGatesTitle 
       BackColor       =   &H00800080&
-      Caption         =   "Welcome to the Logic Gates Simulator! Please chose a gate and an input!"
+      Caption         =   "Welcome to the Logic Gates Simulator! Please choose gates and an input!"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   18
@@ -362,9 +373,9 @@ Begin VB.Form frmLogicGates
          Strikethrough   =   0   'False
       EndProperty
       Height          =   855
-      Left            =   4200
+      Left            =   3960
       TabIndex        =   19
-      Top             =   240
+      Top             =   0
       Width           =   7095
    End
    Begin VB.Label lblTrueorFalse 
@@ -378,12 +389,12 @@ Begin VB.Form frmLogicGates
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
+      Height          =   480
       Index           =   2
       Left            =   12645
       TabIndex        =   18
       Top             =   4440
-      Width           =   1335
+      Width           =   1215
    End
    Begin VB.Image imgGate 
       Height          =   1695
@@ -456,17 +467,17 @@ Begin VB.Form frmLogicGates
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
+      Height          =   480
       Index           =   1
-      Left            =   6240
+      Left            =   6480
       TabIndex        =   16
       Top             =   6240
-      Width           =   1335
+      Width           =   1215
    End
    Begin VB.Image imgGate 
       Height          =   1695
       Index           =   11
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":11ACC
       Stretch         =   -1  'True
       Top             =   5760
@@ -476,7 +487,7 @@ Begin VB.Form frmLogicGates
    Begin VB.Image imgGate 
       Height          =   1695
       Index           =   10
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":149EE
       Stretch         =   -1  'True
       Top             =   5760
@@ -486,7 +497,7 @@ Begin VB.Form frmLogicGates
    Begin VB.Image imgGate 
       Height          =   1695
       Index           =   9
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":17910
       Stretch         =   -1  'True
       Top             =   5760
@@ -496,7 +507,7 @@ Begin VB.Form frmLogicGates
    Begin VB.Image imgGate 
       Height          =   1695
       Index           =   8
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":1A832
       Stretch         =   -1  'True
       Top             =   5760
@@ -506,7 +517,7 @@ Begin VB.Form frmLogicGates
    Begin VB.Image imgGate 
       Height          =   1695
       Index           =   7
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":1D754
       Stretch         =   -1  'True
       Top             =   5760
@@ -516,7 +527,7 @@ Begin VB.Form frmLogicGates
    Begin VB.Image imgGate 
       Height          =   1695
       Index           =   6
-      Left            =   4080
+      Left            =   4200
       Picture         =   "frmLogicGates.frx":20676
       Stretch         =   -1  'True
       Top             =   5760
@@ -594,12 +605,12 @@ Begin VB.Form frmLogicGates
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
+      Height          =   480
       Index           =   0
       Left            =   6480
       TabIndex        =   2
       Top             =   2625
-      Width           =   1335
+      Width           =   1215
    End
 End
 Attribute VB_Name = "frmLogicGates"
@@ -637,6 +648,7 @@ End Function
 Private Sub updateGate(gateIdx As Integer)
     Dim nextInputIdx As Integer 'where output of this gate is connected to
     Dim gateOutput As Boolean
+    Dim i As Integer
     
     'Makes sure that gate output is visible only if both gate inputs have been defined
     'and the gate type is selected
@@ -644,6 +656,7 @@ Private Sub updateGate(gateIdx As Integer)
         lblTrueorFalse(gateIdx).Visible = False
         Exit Sub
     End If
+    
     gateOutput = calculateLogic(cboLogicGates(gateIdx), inputVal(2 * gateIdx), inputVal(2 * gateIdx + 1))
     lblTrueorFalse(gateIdx) = gateOutput
     lblTrueorFalse(gateIdx).Visible = True
@@ -660,7 +673,15 @@ Private Sub updateGate(gateIdx As Integer)
     inputDefined(nextInputIdx) = True
     inputVal(nextInputIdx) = gateOutput
     updateGate (2)
- 
+    
+    'Generates error message
+    lblError.Visible = False
+    For i = 0 To 3
+        If Not inputDefined(i) Then
+            lblError.Visible = True
+            Exit For
+        End If
+    Next i
 End Sub
 Private Sub inputChanged(idx As Integer)
     Dim gateIdx As Integer
@@ -704,6 +725,7 @@ Private Sub Form_Load()
         inputDefined(i) = False
     Next i
 End Sub
+
 Private Sub optTRUE_Click(Index As Integer)
     inputChanged (Index)
 End Sub

@@ -235,6 +235,7 @@ Dim baseValid As Boolean
 Dim convertedNumber As String
 Dim stepValue 'the value of the current step
 Private Function setDecimalNum(str As String) As Boolean
+    'The purpose of the function is to check if the input is between 0 and 255
     Dim n As Integer
     n = Val(str)
     If IsNumeric(str) And n >= 0 And n < 256 Then
@@ -250,6 +251,7 @@ Private Function setDecimalNum(str As String) As Boolean
     End If
 End Function
 Private Function setBase(str As String) As Boolean
+    'Makes sure that base is valid
     Dim n As Integer
     n = Val(str)
     If IsNumeric(str) And n >= 2 And n <= 9 Or n = 16 Then
@@ -264,11 +266,13 @@ Private Function setBase(str As String) As Boolean
     End If
 End Function
 Private Sub setCmdButtons(enabledOrNot As Boolean)
+    'Enables and disables controls
     cmdShowAnswer.Enabled = enabledOrNot
     cmdStepThrough.Enabled = enabledOrNot
 End Sub
 
 Private Sub prepCmd()
+    'Checks if all inputs have been provided and enables command buttons
     lblSteps.Caption = ""
     lblResult.Caption = ""
     If baseValid And numberValid Then
@@ -279,6 +283,7 @@ Private Sub prepCmd()
     End If
 End Sub
 Private Function digit2str(d As Integer)
+    'This part converts number to string that represents hex characters
     Select Case d
         Case 0 To 9
             digit2str = str(d)
@@ -297,6 +302,7 @@ Private Function digit2str(d As Integer)
     End Select
 End Function
 Private Function stepThroughConvertor()
+    'This peforms one step of number conversion. This function is called from Show Answer and Step Through buttons.
     Dim digit As Integer
     digit = stepValue Mod base
     stepValue = Int(stepValue / base)
@@ -314,13 +320,16 @@ Private Sub numberConvertor()
     lblResult.Caption = ""
     oldStepValue = stepValue
     stepValue = originalNumber
-    While stepValue > 0
+    
+    While stepValue > 0 'It calls the stepthrough convertor function until the number has been fully converted
         lblResult.Caption = stepThroughConvertor() & lblResult.Caption
     Wend
+    
     'reset stepValue back so that stepThrough works
     stepValue = oldStepValue
 End Sub
 Private Sub initForm()
+    'Makes the form blank when initally loaded or when clear button is clicked
     txtBase.Text = ""
     txtDecimalNumber.Text = ""
     lblSteps.Caption = ""
@@ -333,9 +342,11 @@ Private Sub initForm()
     prepCmd
 End Sub
 Private Sub cmdClear_Click()
+    'Clears the form
     initForm
 End Sub
 Private Sub cmdReturn_Click()
+    'returns back to main
     Unload frmRemainderMethod
 End Sub
 
@@ -368,16 +379,12 @@ Private Sub txtBase_Change()
     End If
 End Sub
 
-Private Sub txtDecimalNumber_Validate(keepFocus As Boolean)
+Private Sub txtDecimalNumber_Change()
     setCmdButtons (False)
     If setDecimalNum(txtDecimalNumber) Then
-        keepFocus = False
         prepCmd
-    Else
-        keepFocus = True
     End If
 End Sub
-
 Private Sub vsbBase_Change()
     setCmdButtons (False)
     txtBase.Text = str(vsbBase.Value)

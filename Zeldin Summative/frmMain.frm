@@ -42,7 +42,7 @@ Begin VB.Form frmMain
       Left            =   2760
       TabIndex        =   4
       Top             =   3360
-      Width           =   2415
+      Width           =   2450
    End
    Begin VB.CommandButton cmdRemainderMethod 
       Caption         =   "Remainder Method"
@@ -59,7 +59,7 @@ Begin VB.Form frmMain
       Left            =   2760
       TabIndex        =   3
       Top             =   1560
-      Width           =   2055
+      Width           =   2450
    End
    Begin VB.CommandButton cmdBooleanGates 
       Caption         =   "Boolean Logic Gates (T3)"
