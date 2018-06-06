@@ -282,7 +282,7 @@ Private Sub prepCmd()
         setCmdButtons (False)
     End If
 End Sub
-Private Function digit2str(d As Integer)
+Private Function digit2str(d As Integer) As String
     'This part converts number to string that represents hex characters
     Select Case d
         Case 0 To 9
@@ -301,7 +301,7 @@ Private Function digit2str(d As Integer)
             digit2str = "F"
     End Select
 End Function
-Private Function stepThroughConvertor()
+Private Function stepThroughConvertor() As String
     'This peforms one step of number conversion. This function is called from Show Answer and Step Through buttons.
     Dim digit As Integer
     digit = stepValue Mod base
@@ -361,7 +361,7 @@ Private Sub cmdStepThrough_Click()
     Dim prevStep As Integer
     prevStep = stepValue
     digit = stepThroughConvertor() 'stepValue is changed now
-    lblSteps.Caption = lblSteps.Caption & str(prevStep) & "/" & str(base) & "=" & str(stepValue) & " R" & str(digit) & vbCrLf
+    lblSteps.Caption = lblSteps.Caption & str(prevStep) & "/" & str(base) & "=" & str(stepValue) & " R" & digit & vbCrLf
     If stepValue = 0 Then
         'We are done, no more steps should be shown
         cmdStepThrough.Enabled = False
